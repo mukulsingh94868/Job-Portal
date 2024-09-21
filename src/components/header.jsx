@@ -16,12 +16,16 @@ const Header = () => {
         <img src="/logo.png" className="h-20" alt="Hirrd Logo" />
       </Link>
 
-      <SignedOut>
+      <Button variant="outline">
+        Login
+      </Button>
+
+      {/* <SignedOut>
         <SignInButton />
       </SignedOut>
       <SignedIn>
         <UserButton />
-      </SignedIn>
+      </SignedIn> */}
 
       <div className="flex gap-8">
         {/* <SignedOut>
