@@ -5,7 +5,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-// import Autoplay from "embla-carousel-autoplay";
+import Autoplay from "embla-carousel-autoplay";
 import companies from "../data/companies.json";
 import faqs from "../data/faq.json";
 import {
@@ -49,9 +49,9 @@ const LandingPage = () => {
       </div>
       <Carousel
         plugins={[
-          // Autoplay({
-          //   delay: 2000,
-          // }),
+          Autoplay({
+            delay: 2000,
+          }),
         ]}
         className="w-full py-10"
       >
