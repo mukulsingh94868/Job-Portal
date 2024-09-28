@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Savedjobs = () => {
+const SavedJobs = () => {
   return (
     <div>
-      Savedjobs
+      SavedJobs
     </div>
   )
 }
 
-export default Savedjobs
+export default SavedJobs
