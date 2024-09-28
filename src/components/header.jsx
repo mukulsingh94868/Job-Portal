@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Button } from "./ui/button";
-import { BriefcaseBusiness, Heart, PenBox } from "lucide-react";
 import {
   SignedIn,
   SignedOut,
@@ -9,10 +7,14 @@ import {
   SignIn,
   useUser,
 } from "@clerk/clerk-react";
+import { Button } from "./ui/button";
+import { BriefcaseBusiness, Heart, PenBox } from "lucide-react";
 
 const Header = () => {
-  const [search, setSearch] = useSearchParams();
   const [showSignIn, setShowSignIn] = useState(false);
+
+  const [search, setSearch] = useSearchParams();
+  const { user } = useUser();
 
   useEffect(() => {
     if (search.get("sign-in")) {
@@ -26,6 +28,7 @@ const Header = () => {
       setSearch({});
     }
   };
+
   return (
     <>
       <nav className="py-4 flex justify-between items-center">
@@ -39,12 +42,15 @@ const Header = () => {
               Login
             </Button>
           </SignedOut>
-          <Button variant="destructive" className="rounded-full">
-            <PenBox size={20} className="mr-2" />
-            Post a Job
-          </Button>
           <SignedIn>
-            <Link to="/post-job"></Link>
+            {user?.unsafeMetadata?.role === "recruiter" && (
+              <Link to="/post-job">
+                <Button variant="destructive" className="rounded-full">
+                  <PenBox size={20} className="mr-2" />
+                  Post a Job
+                </Button>
+              </Link>
+            )}
             <UserButton
               appearance={{
                 elements: {
