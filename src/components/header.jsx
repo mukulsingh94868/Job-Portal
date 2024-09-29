@@ -29,6 +29,8 @@ const Header = () => {
     }
   };
 
+  
+
   return (
     <>
       <nav className="py-4 flex justify-between items-center">
