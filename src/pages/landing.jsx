@@ -47,6 +47,8 @@ const LandingPage = () => {
           </Button>
         </Link>
       </div>
+
+      
       <Carousel
         plugins={[
           Autoplay({
