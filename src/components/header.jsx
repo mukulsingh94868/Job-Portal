@@ -28,6 +28,8 @@ const Header = () => {
       setSearch({});
     }
   };
+
+  
   return (
     <>
       <nav className="py-4 flex justify-between items-center">
