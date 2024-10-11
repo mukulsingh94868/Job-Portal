@@ -22,6 +22,10 @@ const Header = () => {
     }
   }, [search]);
 
+
+
+
+  
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       setShowSignIn(false);
