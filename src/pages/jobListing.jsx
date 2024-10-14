@@ -19,7 +19,7 @@ const JobListing = () => {
   }, []);
   return (
     <div>
-      JobListing  JobListing
+      JobListing
     </div>
   )
 }
