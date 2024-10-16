@@ -30,8 +30,6 @@ const JobListing = () => {
   if (!isLoaded) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }
-
-  
   return (
     <div className="">
       <h1 className="gradient-title font-extrabold text-6xl sm:text-7xl text-center pb-8">
