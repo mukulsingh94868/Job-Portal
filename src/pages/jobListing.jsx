@@ -21,7 +21,6 @@ const JobListing = () => {
   const [company_id, setCompany_id] = useState("");
   const { fn: fnJobs, data: dataJobs, loading: loadingJobs } = useFetch(getJobs, { searchQuery, location, company_id });
 
-  
   useEffect(() => {
     if (isLoaded) {
       fnJobs();
