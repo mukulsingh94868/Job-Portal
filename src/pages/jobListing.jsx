@@ -1,8 +1,8 @@
-import { getJobs } from '@/api/apiJobs'
-import useFetch from '@/hooks/use-fetch'
-import { useUser } from '@clerk/clerk-react';
-import { useEffect, useState } from 'react';
-import { BarLoader } from 'react-spinners';
+import { getJobs } from "@/api/apiJobs";
+import useFetch from "@/hooks/use-fetch";
+import { useUser } from "@clerk/clerk-react";
+import { useEffect, useState } from "react";
+import { BarLoader } from "react-spinners";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,13 +13,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import JobCard from "@/components/job-card";
 
 const JobListing = () => {
   const { isLoaded } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
   const [company_id, setCompany_id] = useState("");
-  const { fn: fnJobs, data: dataJobs, loading: loadingJobs } = useFetch(getJobs, { searchQuery, location, company_id });
+  const {
+    fn: fnJobs,
+    data: jobs,
+    loading: loadingJobs,
+  } = useFetch(getJobs, { searchQuery, location, company_id });
 
   useEffect(() => {
     if (isLoaded) {
@@ -36,7 +41,7 @@ const JobListing = () => {
         Latest Jobs
       </h1>
       <form
-        onSubmit={handleSearch}
+        // onSubmit={handleSearch}
         className="h-14 flex flex-row w-full gap-2 items-center mb-3"
       >
         <Input
@@ -50,7 +55,7 @@ const JobListing = () => {
         </Button>
       </form>
 
-      <div className="flex flex-col sm:flex-row gap-2">
+      {/* <div className="flex flex-col sm:flex-row gap-2">
         <Select value={location} onValueChange={(value) => setLocation(value)}>
           <SelectTrigger>
             <SelectValue placeholder="Filter by Location" />
@@ -94,7 +99,7 @@ const JobListing = () => {
         >
           Clear Filters
         </Button>
-      </div>
+      </div> */}
 
       {loadingJobs && (
         <BarLoader className="mt-4" width={"100%"} color="#36d7b7" />
@@ -118,7 +123,7 @@ const JobListing = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default JobListing;
