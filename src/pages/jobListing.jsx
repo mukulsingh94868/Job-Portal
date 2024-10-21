@@ -32,6 +32,8 @@ const JobListing = () => {
     }
   }, [isLoaded, searchQuery, location, company_id]);
 
+  
+
   if (!isLoaded) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }
