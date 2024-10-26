@@ -14,24 +14,50 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import JobCard from "@/components/job-card";
+import { getCompanies } from "@/api/apiCompanies";
+import { State } from "country-state-city";
 
 const JobListing = () => {
   const { isLoaded } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
   const [company_id, setCompany_id] = useState("");
+
   const {
     fn: fnJobs,
     data: jobs,
     loading: loadingJobs,
   } = useFetch(getJobs, { searchQuery, location, company_id });
 
+  const { fn: fnCompanies, data: companies } = useFetch(getCompanies);
+
   useEffect(() => {
     if (isLoaded) {
       fnJobs();
     }
   }, [isLoaded, searchQuery, location, company_id]);
-  
+
+  useEffect(() => {
+    if (isLoaded) {
+      fnCompanies();
+    }
+  }, [isLoaded]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let formData = new FormData(e.target);
+
+    const query = formData.get("search-query");
+    if (query) {
+      setSearchQuery(query);
+    }
+  };
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setCompany_id("");
+    setLocation("");
+  };
 
   if (!isLoaded) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
@@ -42,7 +68,7 @@ const JobListing = () => {
         Latest Jobs
       </h1>
       <form
-        // onSubmit={handleSearch}
+        onSubmit={handleSearch}
         className="h-14 flex flex-row w-full gap-2 items-center mb-3"
       >
         <Input
@@ -56,7 +82,7 @@ const JobListing = () => {
         </Button>
       </form>
 
-      {/* <div className="flex flex-col sm:flex-row gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <Select value={location} onValueChange={(value) => setLocation(value)}>
           <SelectTrigger>
             <SelectValue placeholder="Filter by Location" />
@@ -100,7 +126,7 @@ const JobListing = () => {
         >
           Clear Filters
         </Button>
-      </div> */}
+      </div>
 
       {loadingJobs && (
         <BarLoader className="mt-4" width={"100%"} color="#36d7b7" />
