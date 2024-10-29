@@ -53,8 +53,6 @@ const JobListing = () => {
     }
   };
 
-  
-
   const clearFilters = () => {
     setSearchQuery("");
     setCompany_id("");
