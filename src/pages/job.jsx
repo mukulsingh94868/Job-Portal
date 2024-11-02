@@ -22,6 +22,7 @@ const JobPage = () => {
   const { id } = useParams();
   const { isLoaded, user } = useUser();
 
+  
   const {
     loading: loadingJob,
     data: job,
