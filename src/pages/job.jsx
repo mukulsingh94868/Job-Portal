@@ -16,7 +16,7 @@ import {
 import useFetch from "@/hooks/use-fetch";
 import { getSingleJob, updateHiringStatus } from "@/api/apiJobs";
 import ApplyJobDrawer from "@/components/apply-jobs";
-// import ApplicationCard from "@/components/application-card";
+import ApplicationCard from "@/components/application-card";
 
 const JobPage = () => {
   const { id } = useParams();
@@ -49,6 +49,7 @@ const JobPage = () => {
   if (!isLoaded || loadingJob) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }
+
   return (
     <div className="flex flex-col gap-8 mt-5">
       <div className="flex flex-col-reverse gap-6 md:flex-row justify-between items-center">
@@ -104,7 +105,7 @@ const JobPage = () => {
       </h2>
       <MDEditor.Markdown
         source={job?.requirements}
-        className="bg-transparent sm:text-lg" // add global ul styles - tutorial
+        className="bg-transparent sm:text-lg"
       />
       {job?.recruiter_id !== user?.id && (
         <ApplyJobDrawer
@@ -120,8 +121,7 @@ const JobPage = () => {
           <h2 className="font-bold mb-4 text-xl ml-1">Applications</h2>
           {job?.applications.map((application) => {
             return (
-              <></>
-              // <ApplicationCard key={application.id} application={application} />
+              <ApplicationCard key={application.id} application={application} />
             );
           })}
         </div>

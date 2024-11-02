@@ -13,11 +13,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { updateApplicationStatus } from "@/api/apiApplication";
 import useFetch from "@/hooks/use-fetch";
 import { BarLoader } from "react-spinners";
+import { updateApplicationStatus } from "@/api/apiApplications";
 
 const ApplicationCard = ({ application, isCandidate = false }) => {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = application?.resume;
+    link.target = "_blank";
+    link.click();
+  };
+
+  const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
+    updateApplicationStatus,
+    {
+      job_id: application.job_id,
+    }
+  );
+
+  const handleStatusChange = (status) => {
+    fnHiringStatus(status).then(() => fnHiringStatus());
+  };
   return (
     <Card>
       {loadingHiringStatus && <BarLoader width={"100%"} color="#36d7b7" />}
