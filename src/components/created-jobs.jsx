@@ -15,6 +15,7 @@ const CreatedJobs = () => {
     } = useFetch(getMyJobs, {
         recruiter_id: user.id,
     });
+    
 
     useEffect(() => {
         fnCreatedJobs();
