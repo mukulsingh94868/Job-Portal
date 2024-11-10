@@ -25,6 +25,7 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
     link.click();
   };
 
+  
   const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
     updateApplicationStatus,
     {
