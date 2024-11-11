@@ -16,6 +16,7 @@ const CreatedJobs = () => {
         recruiter_id: user.id,
     });
     
+    
     useEffect(() => {
         fnCreatedJobs();
     }, []);
